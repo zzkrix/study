@@ -217,7 +217,7 @@ onMounted(() => {
 });
 </script>
 
-<style>
+<style scoped>
 .person {
     display: flex;
     flex-direction: column;
