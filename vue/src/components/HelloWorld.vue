@@ -38,6 +38,9 @@ import {
     toRefs,
     watch,
     watchEffect,
+
+    // [@vue/compiler-sfc] `defineExpose` is a compiler macro and no longer needs to be imported.
+    // defineExpose,
 } from "vue";
 
 let person = reactive({
@@ -211,6 +214,32 @@ let title2 = ref();
 function showH2() {
     console.log("------", title2.value);
 }
+
+// 通过 defineExpose 暴露出去的属性可以在组件外部使用
+let a = ref(1);
+let b = ref(2);
+
+defineExpose({
+    a,
+    b,
+    showH2,
+});
+
+watch(a, (newValue, oldValue) => {
+    console.log("watch a changed", newValue, oldValue);
+});
+
+// 如果我们直接写 watch(b, ...) 是可以的，因为 Vue 的 watch API 能够自动处理 ref 对象。
+// 但是当我们使用箭头函数的形式 () => ... 时，我们需要明确地访问 .value 属性，因为：
+// - 箭头函数返回的应该是我们要监听的具体值
+// - b.value 返回的是实际的数值 2
+// - 而 b 返回的是整个 ref 对象
+watch(
+    () => b.value,
+    (newValue, oldValue) => {
+        console.log("watch b changed", newValue, oldValue);
+    }
+);
 
 onMounted(() => {
     console.log("onMounted");
