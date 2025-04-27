@@ -20,6 +20,11 @@
         <div>
             <button @click="changeNum">点击递增：{{ num }}</button>
         </div>
+
+        <!-- 使用 vue 的 ref 替换原生 html 的 id="title2" -->
+        <!-- 避免与其他组件使用重名 ID 时导致的冲突 -->
+        <h2 ref="title2">哈哈哈哈</h2>
+        <button @click="showH2">点我输出 ref 属性对应的内容</button>
     </div>
 </template>
 
@@ -199,6 +204,13 @@ watchEffect(() => {
     }
     console.log("watchEffect", obj5.age, obj5.car);
 });
+
+let title2 = ref();
+
+// 通过 ref 定义的变量可以通过 value 属性访问
+function showH2() {
+    console.log("------", title2.value);
+}
 
 onMounted(() => {
     console.log("onMounted");

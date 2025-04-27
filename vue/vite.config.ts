@@ -11,7 +11,8 @@ import vueSetupExtend from "vite-plugin-vue-setup-extend";
 
 // https://vite.dev/config/
 export default defineConfig({
-    plugins: [vue(), vueDevTools(), vueSetupExtend()],
+    plugins: [vue(), vueSetupExtend()],
+    // plugins: [vue(), vueDevTools(), vueSetupExtend()],
     resolve: {
         alias: {
             "@": fileURLToPath(new URL("./src", import.meta.url)),
