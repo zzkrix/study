@@ -10,7 +10,7 @@
                 > -->
 
                 <!-- 第二种传参写法 -->
-                <RouterLink
+                <router-link
                     :to="{
                         name: 'xiangqing',
                         query: {
@@ -19,21 +19,23 @@
                             content: news.content,
                         },
                     }"
-                    >{{ news.title }}</RouterLink
+                    >{{ news.title }}</router-link
                 >
             </li>
         </ul>
 
         <!-- 展示区 -->
         <div class="news-content">
-            <RouterView></RouterView>
+            <router-view></router-view>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup name="home">
 import { reactive } from "vue";
-import { RouterLink, RouterView } from "vue-router";
+// router-link、router-view 和 RouterLink、RouterView 组件是全局注册的，不需要导入
+// 一般推荐使用小写的方式
+// import { RouterLink, RouterView } from "vue-router";
 
 let newsList = reactive([
     { id: 1, title: "新闻 1", content: "新闻 1 的内容" },

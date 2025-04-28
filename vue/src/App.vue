@@ -5,21 +5,19 @@
 
         <!-- 导航区 -->
         <div class="navigate">
-            <RouterLink to="/">主页</RouterLink>
-            <RouterLink :to="{ name: 'xinwen' }">新闻</RouterLink>
-            <RouterLink to="/about">关于</RouterLink>
+            <router-link to="/">主页</router-link>
+            <router-link :to="{ name: 'xinwen' }">新闻</router-link>
+            <router-link to="/about">关于</router-link>
         </div>
 
         <!-- 展示区 -->
         <div class="main-content">
-            <RouterView></RouterView>
+            <router-view></router-view>
         </div>
     </div>
 </template>
 
-<script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 div.app {
