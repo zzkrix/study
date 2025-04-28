@@ -16,8 +16,17 @@ const router = createRouter({
             children: [
                 {
                     name: "xiangqing",
-                    path: "detail",
+                    path: "detail/:id/:title/:content?",
                     component: () => import("@/views/detail.vue"),
+
+                    // 第一种写法：将路由收到的所有 params 参数，以 props 的形式传给 Detail 组件
+                    // props: true,
+
+                    // 第二种写法：将路由收到的 params/query 参数，以 props 的形式传给 Detail 组件
+                    props: (route) => {
+                        return route.params; // 但这个不如直接用 props: true
+                        // return route.query;
+                    },
                 },
             ],
         },

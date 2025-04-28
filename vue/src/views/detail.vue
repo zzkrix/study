@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <ul class="news-list">
         <li>编号：{{ query.id }}</li>
         <li>标题：{{ query.title }}</li>
@@ -19,4 +19,19 @@ let route = useRoute();
 let { query } = toRefs(route);
 </script>
 
+<style scoped></style> -->
+
+<template>
+    <ul class="news-list">
+        <li>编号：{{ id }}</li>
+        <li>标题：{{ title }}</li>
+        <li>内容：{{ content }}</li>
+    </ul>
+</template>
+
+<script lang="ts" setup name="detail">
+defineProps(["id", "title", "content"]);
+</script>
+
 <style scoped></style>
+

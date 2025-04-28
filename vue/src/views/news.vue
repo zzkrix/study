@@ -13,11 +13,19 @@
                 <router-link
                     :to="{
                         name: 'xiangqing',
-                        query: {
+                        // 针对的是路由种配置的 /detail/:id/:title/:content
+                        params: {
                             id: news.id,
                             title: news.title,
                             content: news.content,
                         },
+                        // 针对的是路由种配置的 /detail?id=1&title=2&content=3
+                        // 但是这种方式不推荐，因为会暴露路由参数
+                        // query: {
+                        //     id: news.id,
+                        //     title: news.title,
+                        //     content: news.content,
+                        // },
                     }"
                     >{{ news.title }}</router-link
                 >
