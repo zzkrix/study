@@ -47,15 +47,36 @@ let newsList = reactive([
 <style scoped>
 .news {
     display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 .news ul {
     margin-top: 30px;
-    /* list-style: none; */
     padding-left: 10px;
+    width: 25%; /* 设置宽度为页面的四分之一 */
+    border-right: 1px solid #ccc; /* 添加一个分隔线 */
+    box-sizing: border-box; /* 确保边框不会增加总宽度 */
+}
+
+.news-content {
+    flex: 1; /* 让内容区域占据剩余空间 */
+    padding: 20px; /* 添加一些内边距 */
 }
 
 .news li::marker {
     color: seagreen;
+}
+
+/* 美化链接样式 */
+.news a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+    padding: 8px 0;
+}
+
+.news a:hover {
+    color: #42b983;
 }
 </style>
