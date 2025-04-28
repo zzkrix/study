@@ -1,22 +1,59 @@
 <template>
-    <header>
-        <div class="wrapper">
-            <HelloWorld ref="son" msg="You did it!" />
-            <button @click="handleClick">测试</button>
+    <div class="news">
+        <!-- 导航区 -->
+        <ul>
+            <li v-for="news in newsList" :key="news.id">
+                <!-- 第一种传参写法 -->
+                <!-- <RouterLink
+                    :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`"
+                    >{{ news.title }}</RouterLink
+                > -->
+
+                <!-- 第二种传参写法 -->
+                <RouterLink
+                    :to="{
+                        name: 'xiangqing',
+                        query: {
+                            id: news.id,
+                            title: news.title,
+                            content: news.content,
+                        },
+                    }"
+                    >{{ news.title }}</RouterLink
+                >
+            </li>
+        </ul>
+
+        <!-- 展示区 -->
+        <div class="news-content">
+            <RouterView></RouterView>
         </div>
-    </header>
+    </div>
 </template>
 
-<script setup lang="ts">
-import HelloWorld from "@/components/HelloWorld.vue";
-import { ref } from "vue";
+<script lang="ts" setup name="home">
+import { reactive } from "vue";
+import { RouterLink, RouterView } from "vue-router";
 
-let son = ref();
-
-function handleClick() {
-    console.log("handleClick", son.value);
-    son.value.showH2();
-    son.value.a += 1;
-    son.value.b += 2;
-}
+let newsList = reactive([
+    { id: 1, title: "新闻 1", content: "新闻 1 的内容" },
+    { id: 2, title: "新闻 2", content: "新闻 2 的内容" },
+    { id: 3, title: "新闻 3", content: "新闻 3 的内容" },
+]);
 </script>
+
+<style scoped>
+.news {
+    display: flex;
+}
+
+.news ul {
+    margin-top: 30px;
+    /* list-style: none; */
+    padding-left: 10px;
+}
+
+.news li::marker {
+    color: seagreen;
+}
+</style>

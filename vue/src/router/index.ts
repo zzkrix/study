@@ -13,6 +13,18 @@ const router = createRouter({
             name: "xinwen",
             path: "/news",
             component: () => import("@/views/news.vue"),
+            children: [
+                {
+                    name: "xiangqing",
+                    path: "detail",
+                    component: () => import("@/views/detail.vue"),
+                },
+            ],
+        },
+        {
+            name: "guanyu",
+            path: "/about",
+            component: () => import("@/views/about.vue"),
         },
     ],
 });
