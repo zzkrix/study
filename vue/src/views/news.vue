@@ -3,6 +3,7 @@
         <!-- 导航区 -->
         <ul>
             <li v-for="news in newsList" :key="news.id">
+                <button @click="showNewsDetail(news)">点击展示详情</button>
                 <!-- 第一种传参写法 -->
                 <!-- <RouterLink
                     :to="`/news/detail?id=${news.id}&title=${news.title}&content=${news.content}`"
@@ -50,6 +51,32 @@ let newsList = reactive([
     { id: 2, title: "新闻 2", content: "新闻 2 的内容" },
     { id: 3, title: "新闻 3", content: "新闻 3 的内容" },
 ]);
+
+// 编程式路由导航
+// 一般用在登录成功后，跳转到首页
+// 一般用在按钮点击后，跳转到某个页面
+// 鼠标划过跳转到某个页面等等
+import { useRouter } from "vue-router";
+
+interface NewInterface {
+    id: number;
+    title: string;
+    content: string;
+}
+
+let router = useRouter();
+function showNewsDetail(news: NewInterface) {
+    // push 参数和 router-link 的 to 属性一致
+    router.push({
+        name: "xiangqing",
+        // 针对的是路由种配置的 /detail/:id/:title/:content
+        params: {
+            id: news.id,
+            title: news.title,
+            content: news.content,
+        },
+    });
+}
 </script>
 
 <style scoped>
