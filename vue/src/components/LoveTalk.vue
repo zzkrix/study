@@ -1,6 +1,6 @@
 <template>
     <div class="talk">
-        <button @click="getLoveTalk">获取一条新内容</button>
+        <button @click="talkStore.getLoveTalk">获取一条新内容</button>
         <ul>
             <li v-for="talk in talkList" :key="talk.id">
                 {{ talk.content }}
@@ -10,18 +10,25 @@
 </template>
 
 <script setup lang="ts" name="LoveTalk">
-import { reactive } from "vue";
-import { nanoid } from "nanoid";
+import { storeToRefs } from "pinia";
+import { useTalkStore } from "@/stores/useTalkStore";
 
-let talkList = reactive<{ id: string; content: string }[]>([]);
+let talkStore = useTalkStore();
 
-function getLoveTalk() {
-    let id = nanoid();
-    talkList.unshift({
-        id: id,
-        content: "你好 " + id,
-    });
-}
+const { talkList } = storeToRefs(talkStore);
+
+// 类似 watch
+// 监听 store 中数据的变化
+talkStore.$subscribe((mutate, state) => {
+    console.log("talkStore changed", mutate, "#########", state);
+
+    // 保存到本地存储
+    /**
+     * 本地存储只能存储字符串
+     * 所以需要将数组转换为字符串
+     */
+    localStorage.setItem("talkList", JSON.stringify(state.talkList) );
+});
 </script>
 
 <style scoped>
