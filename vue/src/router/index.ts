@@ -6,8 +6,13 @@ const router = createRouter({
     routes: [
         {
             name: "zhuye",
-            path: "/",
+            path: "/home",
             component: HomeView,
+        },
+        {
+            // 重定向
+            path: "/",
+            redirect: "/about",
         },
         {
             name: "xinwen",
