@@ -8,6 +8,7 @@
             <router-link to="/">主页</router-link>
             <router-link :to="{ name: 'xinwen' }">新闻</router-link>
             <router-link to="/about">关于</router-link>
+            <router-link :to="{ name: 'pinia' }">pinia</router-link>
         </div>
 
         <!-- 展示区 -->
