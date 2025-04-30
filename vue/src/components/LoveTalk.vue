@@ -17,6 +17,8 @@ let talkStore = useTalkStore();
 
 const { talkList } = storeToRefs(talkStore);
 
+console.log("111111111111", talkList.value);
+
 // 类似 watch
 // 监听 store 中数据的变化
 talkStore.$subscribe((mutate, state) => {
@@ -27,7 +29,7 @@ talkStore.$subscribe((mutate, state) => {
      * 本地存储只能存储字符串
      * 所以需要将数组转换为字符串
      */
-    localStorage.setItem("talkList", JSON.stringify(state.talkList) );
+    localStorage.setItem("talkList", JSON.stringify(state.talkList));
 });
 </script>
 
