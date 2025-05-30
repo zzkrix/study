@@ -20,6 +20,11 @@
         <div>
             <button @click="changeNum">点击递增：{{ num }}</button>
         </div>
+
+        <!-- 使用 vue 的 ref 替换原生 html 的 id="title2" -->
+        <!-- 避免与其他组件使用重名 ID 时导致的冲突 -->
+        <h2 ref="title2">哈哈哈哈</h2>
+        <button @click="showH2">点我输出 ref 属性对应的内容</button>
     </div>
 </template>
 
@@ -33,6 +38,9 @@ import {
     toRefs,
     watch,
     watchEffect,
+
+    // [@vue/compiler-sfc] `defineExpose` is a compiler macro and no longer needs to be imported.
+    // defineExpose,
 } from "vue";
 
 let person = reactive({
@@ -200,12 +208,45 @@ watchEffect(() => {
     console.log("watchEffect", obj5.age, obj5.car);
 });
 
+let title2 = ref();
+
+// 通过 ref 定义的变量可以通过 value 属性访问
+function showH2() {
+    console.log("------", title2.value);
+}
+
+// 通过 defineExpose 暴露出去的属性可以在组件外部使用
+let a = ref(1);
+let b = ref(2);
+
+defineExpose({
+    a,
+    b,
+    showH2,
+});
+
+watch(a, (newValue, oldValue) => {
+    console.log("watch a changed", newValue, oldValue);
+});
+
+// 如果我们直接写 watch(b, ...) 是可以的，因为 Vue 的 watch API 能够自动处理 ref 对象。
+// 但是当我们使用箭头函数的形式 () => ... 时，我们需要明确地访问 .value 属性，因为：
+// - 箭头函数返回的应该是我们要监听的具体值
+// - b.value 返回的是实际的数值 2
+// - 而 b 返回的是整个 ref 对象
+watch(
+    () => b.value,
+    (newValue, oldValue) => {
+        console.log("watch b changed", newValue, oldValue);
+    }
+);
+
 onMounted(() => {
     console.log("onMounted");
 });
 </script>
 
-<style>
+<style scoped>
 .person {
     display: flex;
     flex-direction: column;
