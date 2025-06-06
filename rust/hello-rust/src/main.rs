@@ -44,6 +44,12 @@ fn main() {
     a += 1;
 
     println!("{}", add(a, 2));
+
+    println!("-------------------------");
+
+    // 三元表达式的写法
+    let xx = if 1 == 1 { 2 } else { 3 };
+    println!("The value of xx is: {}", xx);
 }
 
 fn add(a: i32, b: i32) -> i32 {
