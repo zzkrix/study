@@ -32,7 +32,7 @@ fn main() {
     // 变量可以用表达式初始化
     let y = {
         let x = 3;
-        x + 1
+        x + 1 // 这里不能加分号，奇葩
     };
 
     println!("The value of y is: {}", y);
