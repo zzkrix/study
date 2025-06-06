@@ -50,8 +50,22 @@ fn main() {
     // 三元表达式的写法
     let xx = if 1 == 1 { 2 } else { 3 };
     println!("The value of xx is: {}", xx);
+
+    println!("-------------------------");
+
+    println!("plus_or_minus(6) = {}", plus_or_minus(6));
 }
 
 fn add(a: i32, b: i32) -> i32 {
     return a + b;
+}
+
+fn plus_or_minus(x: i32) -> i32 {
+    if x > 5 {
+        return x - 5;
+    }
+
+    // x + 5 // 不加分号的返回值
+    // 等价于带分号的正常 return，奇葩
+    return x + 5;
 }
