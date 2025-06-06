@@ -1,6 +1,8 @@
 // use ferris_says::say;
 // use std::io::{BufWriter, stdout};
 
+use std::thread::sleep;
+
 fn main() {
     // let stdout = stdout();
     // let message = String::from("hello fellow Rustaceans~");
@@ -54,6 +56,9 @@ fn main() {
     println!("-------------------------");
 
     println!("plus_or_minus(6) = {}", plus_or_minus(6));
+
+    println!("--------------------------");
+    loop_forever()
 }
 
 fn add(a: i32, b: i32) -> i32 {
@@ -68,4 +73,19 @@ fn plus_or_minus(x: i32) -> i32 {
     // x + 5 // 不加分号的返回值
     // 等价于带分号的正常 return，奇葩
     return x + 5;
+
+    // 如果函数最后一行没有表达式，也没有 return，则默认返回 (), 例如
+    // fn foo() -> () {
+    //     println!("Hello, world!");
+    // }
+}
+
+// 用不返回的发散函数
+fn loop_forever() -> ! {
+    // 这个函数永远不会返回，类型是 !
+    // ! 是 Rust 中的特殊类型，表示永远不会有返回值
+    loop {
+        println!("This will loop forever!");
+        sleep(std::time::Duration::from_secs(1));
+    }
 }
