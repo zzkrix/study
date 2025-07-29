@@ -134,6 +134,23 @@ local function for_case()
 	end
 end
 
+local function metatable_case()
+	local t = { num = 1 }
+
+	-- 定义一个元表
+	-- 里面定义table的加操作逻辑
+	local mt = {
+		__add = function(a, b)
+			return a.num + b
+		end,
+	}
+
+	-- 设置t的元表
+	setmetatable(t, mt)
+
+	print(t + 1) -- 输出2
+end
+
 local function main()
 	print("===========================")
 	mod_case()
@@ -162,6 +179,9 @@ local function main()
 
 	print("===========================")
 	for_case()
+
+	print("===========================")
+	metatable_case()
 end
 
 main()
