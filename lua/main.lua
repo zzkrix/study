@@ -52,3 +52,9 @@ printTable(table1)
 
 print("table2:")
 printTable(table2)
+
+print("===========================")
+--  输出1到10
+for i = 1, 10 do
+	print(i)
+end
