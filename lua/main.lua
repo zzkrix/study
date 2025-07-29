@@ -91,7 +91,32 @@ local function base_case()
 	print(str) -- 0123abc
 	print(tonumber(str)) -- 转换失败返回nil
 	print(tostring(0123)) -- 输出123，而不是 0123，因为数字0123=123
-	print(#str) -- 7
+	print(#str) -- 7, #表示取变量的长度，可以是字符串、数组、table
+end
+
+function foo(a, b, c)
+	return a, c
+end
+
+local function switch_usage()
+	local a = 3
+
+	-- ~= 表示不等于
+	if a ~= 3 then
+		print("a != 3")
+	end
+
+	if a == 3 then
+		print("a == 3")
+	end
+
+	if a < 10 then
+		print("a < 10")
+	elseif a > 1 then
+		print("a > 1")
+	else
+		print("...")
+	end
 end
 
 local function main()
@@ -106,6 +131,19 @@ local function main()
 
 	print("===========================")
 	base_case()
+
+	print("===========================")
+	local i, j = foo(111, 222, 333)
+	print(i)
+	print(j)
+
+	local x = foo(1, 2, 3)
+	print(x) -- 默认只取第一个返回值，输出1
+	print(type(foo(11, 22, 33))) -- number
+	print(foo(11, 22, 33)) -- 11 33
+
+	print("===========================")
+	switch_usage()
 end
 
 main()
