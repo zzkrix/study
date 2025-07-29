@@ -98,7 +98,7 @@ function foo(a, b, c)
 	return a, c
 end
 
-local function switch_usage()
+local function ifelse_case()
 	local a = 3
 
 	-- ~= 表示不等于
@@ -116,6 +116,13 @@ local function switch_usage()
 		print("a > 1")
 	else
 		print("...")
+	end
+end
+
+local function for_case()
+	-- 从1到10，步长为2，默认不写为1
+	for i = 1, 10, 2 do
+		print(i) -- 输出 1，3，5，7，9
 	end
 end
 
@@ -143,7 +150,10 @@ local function main()
 	print(foo(11, 22, 33)) -- 11 33
 
 	print("===========================")
-	switch_usage()
+	ifelse_case()
+
+	print("===========================")
+	for_case()
 end
 
 main()
