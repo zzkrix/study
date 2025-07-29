@@ -9,7 +9,7 @@ print("===========================")
 local mymod = require("mymod")
 mymod.Say("fffff")
 
-local subMod = require("modules.mod1")
+local subMod = require("modules.submod")
 subMod.Say("sub mod")
 print("===========================")
 
