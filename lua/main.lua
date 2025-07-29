@@ -5,11 +5,17 @@ package.path = package.path .. ";" .. "./?.lua"
 package.path = package.path .. ";" .. "./modules/"
 
 local function mod_case()
+	-- 同级文件夹内调用
 	local mymod = require("mymod")
 	mymod.Say("fffff")
 
+	-- 单层文件夹调用
 	local subMod = require("modules.submod")
 	subMod.Say("sub mod")
+
+	-- 多层文件夹调用
+	local foo = require("modules.subdir.foo")
+	foo.Say("other")
 end
 
 local function table_case()
