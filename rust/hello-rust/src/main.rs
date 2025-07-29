@@ -63,7 +63,29 @@ fn main() {
 
     println!("{}", addfunc(1, 2));
 
+    // Option: Some / None
+    let numbers = [1, 2, 3, 4, 5];
+    let target = 3;
+    match find_element(&numbers, target) {
+        Some(index) => println!("找到了元素，索引是：{index}"),
+        None => println!("没有找到元素"),
+    }
+
+    let some_value = Some(10);
+    if let Some(value) = some_value {
+        println!("Some中的值是：{value}");
+    }
+
     loop_forever()
+}
+
+fn find_element(arr: &[i32], target: i32) -> Option<usize> {
+    for (index, &value) in arr.iter().enumerate() {
+        if value == target {
+            return Some(index); // 找到元素，返回其索引
+        }
+    }
+    None // 没有找到元素，返回 None
 }
 
 fn add(a: i32, b: i32) -> i32 {
