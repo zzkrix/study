@@ -19,14 +19,14 @@ fn main() {
         let mut v = v.to_string();
         v += "_suffix";
 
-        println!("{}", v)
+        println!("{v}")
     }
     println!("-------------------------");
 
     // array 加了 mut 之后，可以修改数组的元素
     array[0] = "new_value"; // 修改数组的第一个元素
     for v in array.iter() {
-        println!("{}", v)
+        println!("{v}")
     }
 
     println!("-------------------------");
@@ -37,7 +37,7 @@ fn main() {
         x + 1 // 这里不能加分号，奇葩
     };
 
-    println!("The value of y is: {}", y);
+    println!("The value of y is: {y}");
 
     println!("-------------------------");
 
@@ -50,19 +50,24 @@ fn main() {
     println!("-------------------------");
 
     // 三元表达式的写法
-    let xx = if 1 == 1 { 2 } else { 3 };
-    println!("The value of xx is: {}", xx);
+    let xx = if true { 2 } else { 3 };
+    println!("The value of xx is: {xx}");
 
     println!("-------------------------");
 
     println!("plus_or_minus(6) = {}", plus_or_minus(6));
 
     println!("--------------------------");
+
+    let addfunc = |a: i32, b: i32| a + b;
+
+    println!("{}", addfunc(1, 2));
+
     loop_forever()
 }
 
 fn add(a: i32, b: i32) -> i32 {
-    return a + b;
+    a + b
 }
 
 fn plus_or_minus(x: i32) -> i32 {
@@ -70,9 +75,9 @@ fn plus_or_minus(x: i32) -> i32 {
         return x - 5;
     }
 
-    // x + 5 // 不加分号的返回值
     // 等价于带分号的正常 return，奇葩
-    return x + 5;
+    // return x + 5;
+    x + 5 // 不加分号的返回值
 
     // 如果函数最后一行没有表达式，也没有 return，则默认返回 (), 例如
     // fn foo() -> () {
