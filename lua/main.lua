@@ -1,3 +1,18 @@
+-- 将本地lua文件添加到lua搜索路径中
+package.path = package.path .. ";" .. "./?.lua"
+
+-- 将本地文件夹添加到lua搜索路径中
+package.path = package.path .. ";" .. "./modules/"
+
+print("===========================")
+
+local mymod = require("mymod")
+mymod.Say("fffff")
+
+local subMod = require("modules.mod1")
+subMod.Say("sub mod")
+print("===========================")
+
 -- 遍历数组
 local arr = { 11, 22, 333, "asd" }
 
