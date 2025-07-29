@@ -86,6 +86,12 @@ local function base_case()
 ---
 ---]]
 	print(logStr)
+
+	local str = "0123abc"
+	print(str) -- 0123abc
+	print(tonumber(str)) -- 转换失败返回nil
+	print(tostring(0123)) -- 输出123，而不是 0123，因为数字0123=123
+	print(#str) -- 7
 end
 
 local function main()
