@@ -8,3 +8,32 @@ print(arr[1]) -- lua数组下标从1开始
 for i = 1, #arr do
 	print(arr[i])
 end
+
+-- Table 操作
+print("===========================")
+
+local table1 = {}
+table1["k1"] = "v1"
+table1["k2"] = "v2"
+
+-- table2 = table1 会使两个变量指向同一个对象
+-- 如果希望 table2 是 table1 的副本，需要手动复制
+local table2 = {}
+for k, v in pairs(table1) do
+	table2[k] = v
+end
+
+-- 修改 table2 的内容，不会影响 table1
+table2["k1"] = "vvv"
+
+local function printTable(tbl)
+	for k, v in pairs(tbl) do
+		print(k, v)
+	end
+end
+
+print("table1:")
+printTable(table1)
+
+print("table2:")
+printTable(table2)
