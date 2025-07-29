@@ -124,6 +124,14 @@ local function for_case()
 	for i = 1, 10, 2 do
 		print(i) -- 输出 1，3，5，7，9
 	end
+
+	for i = 1, 10, -1 do
+		print(i) -- 不输出任何内容
+	end
+
+	for i = 10, 1, -2 do
+		print(i) -- 输出 10, 8, 6, ,4 ,2
+	end
 end
 
 local function main()
