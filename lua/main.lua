@@ -90,7 +90,7 @@ local function base_case()
 	print(#str) -- 7, #表示取变量的长度，可以是字符串、数组、table
 end
 
-function foo(a, b, c)
+local function foo(a, b, c)
 	return a, c
 end
 
