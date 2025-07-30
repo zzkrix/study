@@ -1,8 +1,4 @@
--- 将本地lua文件添加到lua搜索路径中
-package.path = package.path .. ";" .. "./?.lua"
-
--- 将本地文件夹添加到lua搜索路径中
-package.path = package.path .. ";" .. "./modules/"
+require("require_init")
 
 local function mod_case()
 	-- 同级文件夹内调用
