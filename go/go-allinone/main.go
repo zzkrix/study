@@ -8,19 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-//go:embed static/*
+//go:embed static/dist/*
 var staticFiles embed.FS
 
 func main() {
 	r := gin.Default()
 
-	// 设置静态文件服务
-	staticContent, _ := fs.Sub(staticFiles, "static")
-	r.NoRoute(func(c *gin.Context) {
-		http.FileServer(http.FS(staticContent)).ServeHTTP(c.Writer, c.Request)
-	})
-
-	// 创建 API 路由组
+	// API 路由组
 	api := r.Group("/api")
 	{
 		api.GET("/hello", func(c *gin.Context) {
@@ -29,6 +23,12 @@ func main() {
 			})
 		})
 	}
+
+	// 静态文件服务
+	staticContent, _ := fs.Sub(staticFiles, "static/dist")
+	r.NoRoute(func(c *gin.Context) {
+		http.FileServer(http.FS(staticContent)).ServeHTTP(c.Writer, c.Request)
+	})
 
 	r.Run(":8080")
 }
