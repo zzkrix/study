@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Demo</title>
-  <link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <h1>Hello from static file</h1>
-  <p>当前时间: <span id="time"></span></p>
-  <script src="/main.js"></script>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>Demo</title>
+		<link rel="stylesheet" href="/style.css">
+	</head>
+	<body>
+		<h1>Hello from static file</h1>
+		<p>当前时间：<span id="time"></span></p>
+		<script src="/main.js"></script>
+
+		<button id="callBtn">调用后端接口</button>
+		<script>
+		document.getElementById('callBtn').addEventListener('click', async () => {
+			try {
+				const res = await fetch('/api/hello');
+				const data = await res.json();
+				alert(data.message);
+			} catch (err) {
+				alert('请求失败：' + err);
+			}
+		});
+		</script>
+	</body>
 </html>
