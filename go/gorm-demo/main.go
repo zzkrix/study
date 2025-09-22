@@ -1,10 +1,12 @@
 package main
 
 import (
-	"demo/dal/model"
-	"demo/dal/query"
 	"encoding/json"
 	"fmt"
+
+	"demo/dal/model"
+	"demo/dal/query"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
